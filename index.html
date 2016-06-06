@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <style>
+      .pixel{
+        width:16px;
+        height:16px;
+        border-radius:1px;
+        float:left;
+      }
+      .white{
+        background-color: white;
+      }
+      .black{
+        background-color: black;
+      }
+      #game{
+        width:960px;
+      }
+    </style>
+    <script src="hero.js"></script>
+    <script src="enemy.js"></script>
+    <script src="board.js"></script>
+    <script>
+
+
+      function init(){
+        initBoard();
+        initObstacles();
+        hero.moveTo(30,59);
+        setInterval(function(){update()},100);
+      }
+      function update(){
+        clearBoard();
+        hero.move();
+        for(i = 0; i < obstacles.length; i++)
+          obstacles[i].move();
+        displayBoard();
+      }
+
+
+    </script>
+  </head>
+  <body>
+    <div id="game"></div>
+    <script>
+      window.onload = init();
+      window.onkeydown = function(e){
+        hero.processKeys(e.keyCode,"down");
+      };
+      window.onkeyup = function(e){
+        hero.processKeys(e.keyCode,"up");
+      };
+    </script>
+
+
+  </body>
+</html>
