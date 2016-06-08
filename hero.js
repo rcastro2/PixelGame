@@ -1,17 +1,23 @@
       var hero = {
         x:0,
         y:0,
+        blocks:[],
         vertical:0,
         horizontal:0,
         moveTo:function(x,y){
           this.x=x;
           this.y=y;
         },
-        draw:function(){
-          board[this.y-1][this.x] = true;
-          board[this.y][this.x] = true;
-          board[this.y][this.x-1] = true;
-          board[this.y][this.x+1] = true;
+        draw:function(obj){
+          this.blocks = [{"x":this.x,"y":this.y-1},
+                    {"x":this.x-1,"y":this.y},
+                    {"x":this.x,"y":this.y},
+                    {"x":this.x+1,"y":this.y}
+                   ]
+          for(i=0;i<this.blocks.length;i++){
+            board[this.blocks[i].y][this.blocks[i].x] = true;
+          }
+
         },
         processKeys:function(key,status){
           if(status == "down"){

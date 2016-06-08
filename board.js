@@ -3,13 +3,14 @@ var size = 60;
 var board;
 var obstacles = [];
 
+
 function initBoard(){
   board = new Array(size);
   for(r = 0; r < board.length; r++)
     board[r] = new Array(size);
 }
 function initObstacles(){
-  for(a = 0; a < 60; a++){
+  for(a = 0; a < 20; a++){
     asize = Math.floor(Math.random()*4)+1;
     ax = Math.floor(Math.random()*size - asize)
     ay = Math.floor(Math.random()*size*3 - asize)

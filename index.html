@@ -32,8 +32,9 @@
       function update(){
         clearBoard();
         hero.move();
-        for(i = 0; i < obstacles.length; i++)
+        for(i = 0; i < obstacles.length; i++){
           obstacles[i].move();
+        }
         displayBoard();
       }
 
