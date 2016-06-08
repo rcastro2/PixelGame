@@ -1,17 +1,13 @@
 <html>
   <head>
     <style>
-      .pixel{
+      #game div{
         width:16px;
         height:16px;
         border-radius:1px;
         float:left;
-      }
-      .white{
-        background-color: white;
-      }
-      .black{
         background-color: black;
+        border-radius:2px;
       }
       #game{
         width:960px;
@@ -25,9 +21,6 @@
 
       function init(){
         initBoard();
-        initObstacles();
-        hero.moveTo(30,59);
-        setInterval(function(){update()},100);
       }
       function update(){
         clearBoard();

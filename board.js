@@ -5,9 +5,16 @@ var obstacles = [];
 
 
 function initBoard(){
+  var div;
   board = new Array(size);
-  for(r = 0; r < board.length; r++)
+  for(r = 0; r < board.length; r++){
     board[r] = new Array(size);
+    for(c = 0; c < board[r].length; c++){
+      div = document.createElement("DIV")
+      board[r][c] = div
+      document.getElementById("game").appendChild(div);
+    }
+  }
 }
 function initObstacles(){
   for(a = 0; a < 20; a++){
@@ -21,16 +28,6 @@ function initObstacles(){
 function clearBoard(){
   for(r = 0; r < board.length; r++)
     for(c = 0; c < board[r].length; c++)
-      board[r][c] = false;
-}
-function displayBoard(){
-  var build = ""
-  for(r = 0; r < board.length; r++)
-    for(c = 0; c < board[r].length; c++)
-      if(board[r][c]){
-        build += "<div class='pixel white'></div>"
-      }else {
-        build += "<div class='pixel black'></div>"
-      }
-  document.getElementById("game").innerHTML = build;
+      if(board[r][c].style.backgroundColor != "black")
+        board[r][c].style.backgroundColor = "black";
 }
