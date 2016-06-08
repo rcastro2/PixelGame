@@ -21,14 +21,14 @@
 
       function init(){
         initBoard();
+        setInterval(function(){update();},100);
       }
       function update(){
         clearBoard();
-        hero.move();
-        for(i = 0; i < obstacles.length; i++){
-          obstacles[i].move();
-        }
-        displayBoard();
+        r = Math.floor(Math.random()*60)
+        c = Math.floor(Math.random()*60)
+        board[r][c].style.backgroundColor = "yellow";
+
       }
 
 
