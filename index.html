@@ -16,6 +16,7 @@
     <script src="hero.js"></script>
     <script src="enemy.js"></script>
     <script src="board.js"></script>
+    <script src="alphabet.js"></script>
     <script>
       function init(){
         initBoard();
@@ -40,6 +41,7 @@
               obstacles[i].dead = true;
             }
           }
+          displayText("S",2,2);
         }
         setTimeout(function(){update();},100);
       }

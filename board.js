@@ -33,6 +33,8 @@ function clearBoard(){
 }
 function displayText(msg,x,y){
   for(var i = 0; i < letters["S"].length;i++){
-    
+    var offsetx = letters["S"][i].offsetx;
+    var offsety = letters["S"][i].offsety;
+    board.pixel[offsety][offsetx].style.backgroundColor = "yellow";
   }
 }
