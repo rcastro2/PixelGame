@@ -7,32 +7,46 @@
         border-radius:1px;
         float:left;
         background-color: black;
-        border-radius:2px;
       }
       #game{
         width:960px;
       }
     </style>
+
     <script src="hero.js"></script>
     <script src="enemy.js"></script>
     <script src="board.js"></script>
     <script>
-
-
       function init(){
         initBoard();
-        setInterval(function(){update();},100);
+        initObstacles();
+        update();
       }
+      var pause = false;
+      var score = 0;
       function update(){
-        clearBoard();
-        hero.move();
-
+        if(!pause){
+          clearBoard();
+          hero.move();
+          for(var i = 0; i < obstacles.length; i++){
+            obstacles[i].move();
+            if(hero.collidedWith(obstacles[i])){
+              obstacles[i].dead = true;
+              score += obstacles[i].size * 10;
+              console.clear();
+              console.log("%cScore: " + score,'background:green;color:white;font-size:24pt');
+            }
+            if(obstacles[i].y > board.rows){
+              obstacles[i].dead = true;
+            }
+          }
+        }
+        setTimeout(function(){update();},100);
       }
-
-
     </script>
   </head>
   <body>
+    <button onclick="pause = !pause;">Pause</button>
     <div id="game"></div>
     <script>
       window.onload = init();

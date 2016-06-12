@@ -14,10 +14,22 @@
                           {"x":this.x,"y":this.y},
                           {"x":this.x+1,"y":this.y}
                          ]
-          for(i=0;i<this.blocks.length;i++){
-            board[this.blocks[i].y][this.blocks[i].x].style.backgroundColor = "white";
+          for(var i=0;i<this.blocks.length;i++){
+            board.pixel[this.blocks[i].y][this.blocks[i].x].style.backgroundColor = "white";
           }
-
+        },
+        collidedWith:function(obs){
+          if(!obs.onScreen){
+            return false;
+          }
+          for(var i=0;i<this.blocks.length;i++){
+            for(var j=0;j<obs.blocks.length;j++){
+              if(this.blocks[i].x == obs.blocks[j].x && this.blocks[i].y == obs.blocks[j].y){
+                return true;
+              }
+            }
+          }
+          return false;
         },
         processKeys:function(key,status){
           if(status == "down"){
@@ -35,12 +47,12 @@
         move:function(){
           if(this.horizontal == left && this.x - 1 > 0)
             this.x--;
-          else if(this.horizontal == right  && this.x + 1 < size - 1)
+          else if(this.horizontal == right  && this.x + 1 < board.columns - 1)
             this.x++;
 
           if(this.vertical == up && this.y - 1 > 0)
             this.y--;
-          else if(this.vertical == down && this.y < size - 1)
+          else if(this.vertical == down && this.y < board.rows - 1)
               this.y++;
           this.draw();
         }
