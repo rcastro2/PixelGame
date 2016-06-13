@@ -1,5 +1,5 @@
 var left = 37, up = 38, right = 39, down = 40;
-var board = {"rows":60,"columns":60};
+var board = {"rows":50,"columns":50};
 var obstacles = [];
 
 function initBoard(){
@@ -31,14 +31,16 @@ function clearBoard(){
         board.pixel[r][c].style.backgroundColor = "black";
       }
 }
-function displayText(msg,x,y){
+function displayText(msg,x,y,color){
   var letterOffset = 0;
   for(var k = 0; k < msg.length; k++){
     var c = msg.substring(k,k+1);
     for(var i = 0; i < letters[c].length;i++){
       var offsetx = letters[c][i].offsetx;
       var offsety = letters[c][i].offsety;
-      board.pixel[y + offsety][x + offsetx + letterOffset].style.backgroundColor = "yellow";
+      if((y + offsety) >=0  && (y + offsety) < board.rows && (x + offsetx + letterOffset) >= 0 && (x + offsetx + letterOffset) < board.columns){
+        board.pixel[y + offsety][x + offsetx + letterOffset].style.backgroundColor = color;
+      }
     }
     letterOffset += 4;
   }

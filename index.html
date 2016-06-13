@@ -2,14 +2,14 @@
   <head>
     <style>
       #game div{
-        width:16px;
-        height:16px;
+        width:15px;
+        height:15px;
         border-radius:1px;
         float:left;
         background-color: black;
       }
       #game{
-        width:960px;
+        width:750px;
       }
     </style>
 
@@ -41,7 +41,7 @@
               obstacles[i].dead = true;
             }
           }
-          displayText("SCORE:" + score,2,2);
+          displayText("SCORE: " + score,2,2,"yellow");
         }
         setTimeout(function(){update();},100);
       }
