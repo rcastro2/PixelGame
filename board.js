@@ -32,9 +32,15 @@ function clearBoard(){
       }
 }
 function displayText(msg,x,y){
-  for(var i = 0; i < letters["S"].length;i++){
-    var offsetx = letters["S"][i].offsetx;
-    var offsety = letters["S"][i].offsety;
-    board.pixel[offsety][offsetx].style.backgroundColor = "yellow";
+  var letterOffset = 0;
+  for(var k = 0; k < msg.length; k++){
+    var c = msg.substring(k,k+1);
+    for(var i = 0; i < letters[c].length;i++){
+      var offsetx = letters[c][i].offsetx;
+      var offsety = letters[c][i].offsety;
+      board.pixel[y + offsety][x + offsetx + letterOffset].style.backgroundColor = "yellow";
+    }
+    letterOffset += 4;
   }
+
 }
