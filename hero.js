@@ -4,6 +4,7 @@
         blocks:[],
         vertical:0,
         horizontal:0,
+        color:"black",
         moveTo:function(x,y){
           this.x=x;
           this.y=y;
@@ -15,7 +16,7 @@
                           {"x":this.x+1,"y":this.y}
                          ]
           for(var i=0;i<this.blocks.length;i++){
-            board.pixel[this.blocks[i].y][this.blocks[i].x].style.backgroundColor = "white";
+            board.pixel[this.blocks[i].y][this.blocks[i].x].style.backgroundColor = this.color;
           }
         },
         collidedWith:function(obs){

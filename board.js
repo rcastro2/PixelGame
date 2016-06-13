@@ -1,5 +1,5 @@
 var left = 37, up = 38, right = 39, down = 40;
-var board = {"rows":50,"columns":50};
+var board = {"rows":50,"columns":50,"default":"white"};
 var obstacles = [];
 
 function initBoard(){
@@ -27,8 +27,8 @@ function initObstacles(){
 function clearBoard(){
   for(var r = 0; r < board.rows; r++)
     for(var c = 0; c < board.columns; c++)
-      if(board.pixel[r][c].style.backgroundColor != "black"){
-        board.pixel[r][c].style.backgroundColor = "black";
+      if(board.pixel[r][c].style.backgroundColor != board.default){
+        board.pixel[r][c].style.backgroundColor = board.default;
       }
 }
 function displayText(msg,x,y,color){
