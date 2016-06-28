@@ -4,7 +4,7 @@
         blocks:[],
         vertical:0,
         horizontal:0,
-        color:"black",
+        color:"white",
         moveTo:function(x,y){
           this.x=x;
           this.y=y;

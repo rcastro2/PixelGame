@@ -5,7 +5,7 @@ function Enemy(x,y,size){
   this.onScreen = false;
   this.dead = false;
   this.blocks = new Array(this.size);
-  this.color = "black";
+  this.color = "white";
   this.draw = function(){
     pos = 0
     for(var r = 0; r < this.size; r++)

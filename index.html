@@ -2,16 +2,12 @@
   <head>
     <style>
       #game div{
-        width:15px;
-        height:15px;
         border-radius:1px;
         float:left;
         background-color: black;
       }
       #game{
-        width:750px;
-        height:750px;
-        border:1px solid gray;
+        
       }
     </style>
 
@@ -36,14 +32,14 @@
             if(hero.collidedWith(obstacles[i])){
               obstacles[i].dead = true;
               score += obstacles[i].size * 10;
-              console.clear();
-              console.log("%cScore: " + score,'background:green;color:white;font-size:24pt');
+              //console.clear();
+              //console.log("%cScore: " + score,'background:green;color:white;font-size:24pt');
             }
             if(obstacles[i].y > board.rows){
               obstacles[i].dead = true;
             }
           }
-          displayText("SCORE: " + score,2,2,"yellow");
+          displayText("SCORE:" + score,2,2,"yellow");
         }
         setTimeout(function(){update();},100);
       }

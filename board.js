@@ -1,18 +1,32 @@
 var left = 37, up = 38, right = 39, down = 40;
-var board = {"rows":50,"columns":50,"default":"white"};
+var board = {"rows":80,"columns":80,"default":"black","width":10, "height":10};
 var obstacles = [];
 
 function initBoard(){
-  var div;
+  //Establish "pixels"
+  var game = document.getElementById("game");
+  var div, br = document.createElement("BR");
+  game.innerHTML = "";
   board.pixel = new Array(board.row)
   for(var r = 0; r < board.rows; r++){
     board.pixel[r] = new Array(board.columns);
     for(var c = 0; c < board.columns; c++){
       div = document.createElement("DIV")
       board.pixel[r][c] = div
-      document.getElementById("game").appendChild(div);
+      game.appendChild(div);
     }
+    game.appendChild(br);
   }
+  //Adjust "pixel" sizes and game width;
+  var rules = [];
+  if (document.styleSheets[0].cssRules)
+      rules = document.styleSheets[0].cssRules;
+  else if (document.styleSheets[0].rules)
+      rules = document.styleSheets[0].rules;
+  rules[0].style.width = board.width + 'px';
+  rules[0].style.height = board.height + 'px';
+
+  rules[1].style.width = (board.width * board.columns) + 'px';
   console.log("%cBoard Initialized",'background:green;color:white');
 }
 function initObstacles(){
