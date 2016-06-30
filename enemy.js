@@ -5,14 +5,14 @@ function Enemy(x,y,size){
   this.onScreen = false;
   this.dead = false;
   this.blocks = new Array(this.size);
-  this.color = "white";
+  this.color = "#CCC";
   this.draw = function(){
     pos = 0
     for(var r = 0; r < this.size; r++)
       for(var c = 0; c < this.size; c++)
         if(this.y >=0  && this.y + r < board.rows && this.x >= 0 && this.x + c < board.columns){
           this.blocks[pos++] = {"x":this.x + c,"y":this.y + r};
-          board.pixel[this.y + r][this.x + c].style.backgroundColor = this.color;
+          board.setPixel(this.y + r,this.x + c, this.color);
           this.onScreen = true;
         }else{
           this.onScreen = false;

@@ -2,12 +2,11 @@
   <head>
     <style>
       #game div{
-        border-radius:1px;
+        border-radius:50%;
         float:left;
-        background-color: black;
       }
       #game{
-        
+        background-color:#600;
       }
     </style>
 
@@ -17,31 +16,36 @@
     <script src="alphabet.js"></script>
     <script>
       function init(){
-        initBoard();
-        initObstacles();
+        board.init();
+        board.setObstacles();
         update();
       }
       var pause = false;
       var score = 0;
       function update(){
         if(!pause){
-          clearBoard();
+          board.clear();
           hero.move();
           for(var i = 0; i < obstacles.length; i++){
             obstacles[i].move();
             if(hero.collidedWith(obstacles[i])){
-              obstacles[i].dead = true;
-              score += obstacles[i].size * 10;
-              //console.clear();
-              //console.log("%cScore: " + score,'background:green;color:white;font-size:24pt');
+              hero.dead = true;
             }
             if(obstacles[i].y > board.rows){
               obstacles[i].dead = true;
+              score += obstacles[i].size * 10;
             }
           }
-          displayText("SCORE:" + score,2,2,"yellow");
+          board.displayText("SCORE:" + score,2,2,"yellow");
         }
-        setTimeout(function(){update();},100);
+        if(hero.dead){
+          var gx = Math.floor((board.columns - 36 + 1)/2);
+          var gy = Math.floor((board.rows - 4 + 1)/2);
+          board.displayText("GAME OVER",gx,gy,"orange");
+        }
+        else{
+          setTimeout(function(){update();},10);
+        }
       }
     </script>
   </head>
