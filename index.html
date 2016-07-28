@@ -1,39 +1,44 @@
 <html>
   <head>
     <style>
-      #game div{
-        border-radius:50%;
-        float:left;
-      }
-      #game{
-        background-color:#600;
+      #title{
+        margin-bottom:20px;
       }
     </style>
 
+    <script src="board.js"></script>
     <script src="hero.js"></script>
     <script src="enemy.js"></script>
-    <script src="board.js"></script>
+    <script src="obstacles.js"></script>
     <script src="alphabet.js"></script>
     <script>
-      function init(){
-        board.init();
-        board.setObstacles();
-        update();
-      }
+      var board = new Board("game",60,60,12,12);
+      var title = new Board("title",8,60,12,12);
       var pause = false;
       var score = 0;
+      var gamespeed = 50;
+      function init(){
+        title.init();
+        title.displayText("DODGE EM",2,2,"white");
+        board.init();
+        obstacles.set(board);
+        update();
+      }
+
       function update(){
         if(!pause){
           board.clear();
           hero.move();
-          for(var i = 0; i < obstacles.length; i++){
-            obstacles[i].move();
-            if(hero.collidedWith(obstacles[i])){
+          for(var i = 0; i < obstacles.items.length; i++){
+            var obstacle = obstacles.items[i];
+            obstacle.move();
+            if(hero.collidedWith(obstacle)){
               hero.dead = true;
             }
-            if(obstacles[i].y > board.rows){
-              obstacles[i].dead = true;
-              score += obstacles[i].size * 10;
+            if(obstacle.y > board.rows){
+              obstacle.dead = true;
+              score += obstacle.size * 10;
+              obstacles.increase();
             }
           }
           board.displayText("SCORE:" + score,2,2,"yellow");
@@ -44,13 +49,14 @@
           board.displayText("GAME OVER",gx,gy,"orange");
         }
         else{
-          setTimeout(function(){update();},10);
+          setTimeout(function(){update();},gamespeed);
         }
       }
     </script>
   </head>
   <body>
     <button onclick="pause = !pause;">Pause</button>
+    <div id="title"></div>
     <div id="game"></div>
     <script>
       window.onload = init();

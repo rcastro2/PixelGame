@@ -1,7 +1,8 @@
-function Enemy(x,y,size){
-  this.x = x;
-  this.y = y;
-  this.size = size;
+function Enemy(size){
+  this.size = Math.floor(Math.random()*size)+3;
+  this.x = Math.floor(Math.random()*(board.columns - this.size) + 1);;
+  this.y = -Math.floor(Math.random()*board.rows * 4);
+
   this.onScreen = false;
   this.dead = false;
   this.blocks = new Array(this.size);
@@ -26,8 +27,7 @@ function Enemy(x,y,size){
     this.draw();
   }
   this.recycle = function(){
-    this.size = Math.floor(Math.random()*3)+1;
-    this.x = Math.floor(Math.random()*(board.rows - this.size - 1) + 1);
+    this.x = Math.floor(Math.random()*(board.rows - this.size) + 1);
     this.y = -Math.floor(Math.random()*board.columns * 4)
     this.dead = false;
   }
